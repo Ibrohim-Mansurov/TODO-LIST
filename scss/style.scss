@@ -1,0 +1,175 @@
+@import "reset";
+
+$primary-box-shadow: #5d5d5fbc 0px 0px 15px 0px;
+$primary-font-family: "Roboto", sans-serif;
+$primary-light-color: #ffffff;
+$primary-dark-color: #000000;
+$sm-border-radius: 5px;
+$md-border-radius: 10px;
+$lg-border-radius: 15px;
+$success-color: #2aaa2a;
+$danger-color: #f74747;
+$warning-color: #ffd700;
+$violet-color: #8a2be2;
+$secondary-color: #a7a7a7;
+$info-color: #1e90ff;
+
+* {
+  font-family: $primary-font-family;
+}
+
+button {
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+.todolist-container {
+  background-color: $primary-light-color;
+  box-shadow: $primary-box-shadow;
+  max-width: 480px;
+  height: 700px;
+  border-radius: $lg-border-radius;
+  width: 100%;
+  padding: 16px;
+}
+
+.todolist-container__creator {
+  border-radius: $lg-border-radius;
+  box-shadow: $primary-box-shadow;
+  padding: 16px;
+}
+
+.todolist-form {
+  display: flex;
+  width: 100%;
+  gap: 0 20px;
+  div {
+    flex: 1;
+    display: flex;
+    box-shadow: $primary-box-shadow;
+    border-radius: $md-border-radius;
+    overflow: hidden;
+    align-items: center;
+    padding: 0 10px;
+    input {
+      height: 40px;
+      flex: 1;
+      border: none;
+      font-size: 18px;
+      outline: none;
+    }
+
+    i {
+      color: $danger-color;
+      font-size: 24px;
+    }
+  }
+
+  button {
+    border-radius: $md-border-radius;
+    border: none;
+    padding: 0 20px;
+    background-color: $success-color;
+    color: #fff;
+    text-transform: capitalize;
+    font-size: 20px;
+  }
+}
+
+.todolist-container__collection {
+  height: 420px;
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px 0;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+.task-item {
+  box-shadow: $primary-box-shadow;
+  padding: 16px;
+  border-radius: $sm-border-radius;
+  h3 {
+    font-size: 24px;
+    font-family: $primary-font-family;
+    padding: 4px;
+  }
+
+  h3[contenteditable="true"] {
+    border: 1px solid $secondary-color;
+  }
+  div {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0 10px;
+    margin-top: 10px;
+    button {
+      border: none;
+      border-radius: $sm-border-radius;
+      padding: 10px 0;
+      color: #fff;
+
+      .task-date {
+        top: -24px;
+        left: 50%;
+        transform: translateX(-50%) scale(0.5);
+        padding: 3px;
+        opacity: 0;
+        background-color: #000000af;
+        border-radius: $sm-border-radius;
+        position: absolute;
+        transition: 0.3s;
+        visibility: hidden;
+      }
+
+      &:first-child {
+        background-color: $success-color;
+      }
+
+      &:nth-child(2) {
+        background-color: $warning-color;
+      }
+
+      &:nth-child(3) {
+        background-color: $violet-color;
+        position: relative;
+        &:hover .task-date {
+          opacity: 1;
+          visibility: visible;
+          transform: translateX(-50%) scale(1);
+        }
+      }
+
+      &:last-child {
+        background-color: $danger-color;
+      }
+    }
+  }
+}
+
+.delete-all {
+  padding: 10px 20px;
+  color: #fff;
+  background-color: $danger-color;
+  border: none;
+  border-radius: $sm-border-radius;
+  font-size: 18px;
+  margin-top: 50px;
+}
